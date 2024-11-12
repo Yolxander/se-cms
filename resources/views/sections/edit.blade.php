@@ -15,16 +15,13 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Section Details Card -->
             <div class="row">
                 <div class="col-12">
                     <div class="card border shadow-xs mb-4">
                         <div class="card-header border-bottom pb-0">
-                            <div class="d-sm-flex align-items-center">
-                                <div>
-                                    <h6 class="font-weight-semibold text-lg mb-0">Section Details</h6>
-                                    <p class="text-sm">Edit the information below</p>
-                                </div>
-                            </div>
+                            <h6 class="font-weight-semibold text-lg mb-0">Section Details</h6>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('sections.update', $section->id) }}" method="POST">
@@ -64,30 +61,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-control-label">Content</label>
-                                            @foreach($section->content as $content)
-                                                <div class="mb-3">
-                                                    <label for="content_{{ $content->id }}" class="form-control-label">{{ ucfirst($content->key) }}</label>
-                                                    @if($content->type == 'text')
-                                                        <input type="text" class="form-control" id="content_{{ $content->id }}" name="content[{{ $content->id }}][value]" value="{{ $content->value }}">
-                                                    @elseif($content->type == 'textarea')
-                                                        <textarea class="form-control" id="content_{{ $content->id }}" name="content[{{ $content->id }}][value]" rows="4">{{ $content->value }}</textarea>
-                                                    @elseif($content->type == 'image')
-                                                        <input type="file" class="form-control" id="content_{{ $content->id }}" name="content[{{ $content->id }}][value]">
-                                                        @if($content->value)
-                                                            <img src="{{ $content->value }}" alt="{{ $content->key }}" class="mt-2" style="max-width: 200px;">
-                                                        @endif
-                                                    @endif
-                                                    <input type="hidden" name="content[{{ $content->id }}][key]" value="{{ $content->key }}">
-                                                    <input type="hidden" name="content[{{ $content->id }}][type]" value="{{ $content->type }}">
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Buttons to cancel or update -->
                                 <div class="d-flex justify-content-end mt-4">
                                     <a href="{{ route('sections.index') }}" class="btn btn-light m-0">Cancel</a>
                                     <button type="submit" class="btn btn-dark m-0 ms-2">Update Section</button>
@@ -97,6 +71,61 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Section Content Card -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="card border shadow-xs mb-4">
+                        <div class="card-header border-bottom pb-0">
+                            <h6 class="font-weight-semibold text-lg mb-0">Content</h6>
+                        </div>
+                        <div class="card-body">
+                            @foreach($section->content as $content)
+                                <div class="mb-3">
+                                    <label for="{{ 'content_' . $content->id }}" class="form-control-label">{{ ucfirst($content->key) }}</label>
+
+                                    @if($content->type == 'text')
+                                        <input type="text"
+                                               id="{{ 'content_' . $content->id }}"
+                                               name="{{ 'content[' . $content->id . '][value]' }}"
+                                               value="{{ $content->value }}"
+                                               class="form-control"/>
+                                    @elseif($content->type == 'textarea')
+                                        <textarea id="{{ 'content_' . $content->id }}"
+                                                  name="{{ 'content[' . $content->id . '][value]' }}"
+                                                  rows="4"
+                                                  class="form-control">{{ $content->value }}</textarea>
+                                    @elseif($content->type == 'image')
+                                        <input type="file"
+                                               id="{{ 'content_' . $content->id }}"
+                                               name="{{ 'content[' . $content->id . '][value]' }}"
+                                               accept=".jpg,.jpeg,.png"
+                                               class="form-control"/>
+                                        @if($content->value)
+                                            <img src="{{ $content->value }}" alt="{{ $content->key }}"
+                                                 style="max-width: 200px;"
+                                                 class="mt-2"/>
+                                        @endif
+                                    @endif
+
+                                    <!-- Hidden fields to store key and type -->
+                                    <input type='hidden' name='content[{{ $content->id }}][key]' value='{{ $content->key }}'>
+                                    <input type='hidden' name='content[{{ $content->id }}][type]' value='{{ $content->type }}'>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Buttons to cancel or update -->
+                        <div class="d-flex justify-content-end mt-4">
+                            <a href="{{ route('sections.index') }}" class="btn btn-light m-0">Cancel</a>
+                            <button type="submit" class="btn btn-dark m-0 ms-2">Update Section</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
     </main>
 </x-app-layout>
