@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -87,3 +92,20 @@ Route::post('/reset-password', [ResetPasswordController::class, 'store'])
 Route::get('/laravel-examples/user-profile', [ProfileController::class, 'index'])->name('users.profile')->middleware('auth');
 Route::put('/laravel-examples/user-profile/update', [ProfileController::class, 'update'])->name('users.update')->middleware('auth');
 Route::get('/laravel-examples/users-management', [UserController::class, 'index'])->name('users-management')->middleware('auth');
+
+Route::resource('pages', PageController::class);
+Route::resource('media', MediaController::class);
+Route::resource('bookings', BookingController::class);
+Route::resource('reviews', ReviewController::class);
+Route::resource('settings', SettingController::class);
+
+// Specific page routes
+Route::get('/pages/home', [PageController::class, 'editHome'])->name('pages.home');
+Route::get('/pages/rooms', [PageController::class, 'editRooms'])->name('pages.rooms');
+Route::get('/pages/amenities', [PageController::class, 'editAmenities'])->name('pages.amenities');
+Route::get('/pages/activities', [PageController::class, 'editActivities'])->name('pages.activities');
+Route::get('/pages/contact', [PageController::class, 'editContact'])->name('pages.contact');
+
+Route::get('/docs', function () {
+    return view('docs');
+})->name('docs');
