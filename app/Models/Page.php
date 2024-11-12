@@ -20,4 +20,9 @@ class Page extends Model
     {
         return $query->where('type', $type);
     }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class);
+    }
 }

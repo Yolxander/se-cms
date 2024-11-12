@@ -4,6 +4,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -94,6 +95,7 @@ Route::put('/laravel-examples/user-profile/update', [ProfileController::class, '
 Route::get('/laravel-examples/users-management', [UserController::class, 'index'])->name('users-management')->middleware('auth');
 
 Route::resource('pages', PageController::class);
+Route::resource('sections', SectionsController::class);
 Route::resource('media', MediaController::class);
 Route::resource('bookings', BookingController::class);
 Route::resource('reviews', ReviewController::class);

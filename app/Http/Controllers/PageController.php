@@ -37,10 +37,14 @@ class PageController extends Controller
         return view('pages.show', compact('page'));
     }
 
-    public function edit(Page $page)
+    public function edit($id)
     {
+        $page = Page::with(['sections' => function ($query) {
+            $query->orderBy('order');
+        }, 'sections.content'])->findOrFail($id);
         return view('pages.edit', compact('page'));
     }
+
 
     public function update(Request $request, Page $page)
     {

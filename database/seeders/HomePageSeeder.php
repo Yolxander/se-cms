@@ -42,7 +42,7 @@ class HomePageSeeder extends Seeder
             'section_id' => $heroSection->id,
             'key' => 'description',
             'value' => 'Welcome to Hotel Daleese. Located on the Southern Pacific Coast of Costa Rica, our family-owned boutique hotel is situated in Uvita, Puntarenas. We look forward to your visit!',
-            'type' => 'text',
+            'type' => 'textarea',
         ]);
 
         Content::create([

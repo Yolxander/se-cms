@@ -8,17 +8,16 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('section_contents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('slug')->unique();
-            $table->boolean('is_published')->default(false);
+            $table->foreignId('section_id')->constrained()->onDelete('cascade');
+            $table->text('content');
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('section_contents');
     }
 };

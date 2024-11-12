@@ -56,6 +56,21 @@
                 </a>
             </li>
             <li class="nav-item">
+                <a class="nav-link {{ is_current_route('sections.*') ? 'active' : '' }}" href="{{ route('sections.index') }}">
+                    <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                        <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>sections</title>
+                            <g id="sections" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="layout" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <path class="color-background" d="M22,0 L2,0 C0.8954305,0 0,0.8954305 0,2 L0,22 C0,23.1045695 0.8954305,24 2,24 L22,24 C23.1045695,24 24,23.1045695 24,22 L24,2 C24,0.8954305 23.1045695,0 22,0 Z M10,22 L2,22 L2,12 L10,12 L10,22 Z M22,22 L12,22 L12,12 L22,12 L22,22 Z M22,10 L2,10 L2,2 L22,2 L22,10 Z" id="Shape"></path>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">Manage Page Sections</span>
+                </a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link {{ is_current_route('media.*') ? 'active' : '' }}" href="{{ route('media.index') }}">
                     <div
                         class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
@@ -74,6 +89,7 @@
                     <span class="nav-link-text ms-1">Photo Gallery</span>
                 </a>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link {{ is_current_route('bookings.*') ? 'active' : '' }}" href="{{ route('bookings.index') }}">
                     <div
