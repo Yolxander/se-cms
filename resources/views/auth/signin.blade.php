@@ -14,12 +14,17 @@
                         <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
                             <div class="card card-plain mt-8">
                                 <div class="card-header pb-0 text-left bg-transparent text-center">
-                                    <h3 class="font-weight-black text-dark display-6">Welcome back</h3>
-                                    <p class="mb-0">Welcome back!</p>
-                                    <p class="mb-0">Create a new acount<br></p>
-                                    <p class="mb-0">OR Sign in with these credentials:</p>
-                                    <p class="mb-0">Email: <b>admin@corporateui.com</b></p>
-                                    <p class="mb-0">Password: <b>secret</b></p>
+                                    <h3 class="font-weight-black text-dark display-6">Welcome Back!</h3>
+                                    <p class="mb-0">It’s great to have you here again!</p>
+                                    <p class="mb-0"></p>
+                                    <p class="mb-0">If you’re new, feel free to create an account to get started!</p>
+{{--                                    <p class="mb-0">Explore our latest features and enhancements designed to improve your experience:</p>--}}
+{{--                                    <ul class="mb-0">--}}
+{{--                                        <li>New analytics dashboard for better insights</li>--}}
+{{--                                        <li>Improved content management tools</li>--}}
+{{--                                        <li>Enhanced user interface for easier navigation</li>--}}
+{{--                                    </ul>--}}
+{{--                                    <p class="mb-0">We hope you enjoy your time here!</p>--}}
                                 </div>
                                 <div class="text-center">
                                     @if (session('status'))
@@ -88,10 +93,8 @@
                                     style="background-image:url('../assets/img/image-sign-in.jpg')">
                                     <div
                                         class="blur mt-12 p-4 text-center border border-white border-radius-md position-absolute fixed-bottom m-4">
-                                        <h2 class="mt-3 text-dark font-weight-bold">Enter our global community of
-                                            developers.</h2>
-                                        <h6 class="text-dark text-sm mt-5">Copyright © 2022 Corporate UI Design System
-                                            by Creative Tim.</h6>
+                                        <h2 class="mt-3 text-dark font-weight-bold">Manage your site content effortlessly and keep your audience engaged.</h2>
+                                        <h6 class="text-dark text-sm mt-5">Copyright © 2024 Sempre Studios</h6>
                                     </div>
                                 </div>
                             </div>

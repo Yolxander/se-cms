@@ -4,7 +4,7 @@
            aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand d-flex align-items-center m-0"
            href="{{ route('dashboard') }}" target="_blank">
-            <span class="font-weight-bold text-lg">Hotel CMS Dashboard</span>
+            <span class="font-weight-bold text-lg">Hotel Daleese</span>
         </a>
     </div>
     <div class="collapse navbar-collapse px-4 w-auto " id="sidenav-collapse-main">
