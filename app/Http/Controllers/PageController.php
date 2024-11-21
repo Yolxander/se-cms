@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PageController extends Controller
 {
@@ -27,13 +28,15 @@ class PageController extends Controller
             'type' => 'required|in:home,rooms,amenities,activities,contact',
         ]);
 
-        Page::create($validatedData);
+        $page = Page::create($validatedData);
 
-        return redirect()->route('pages.index')->with('success', 'Page created successfully.');
+        return redirect()->route('site-pages.show', $page->id)->with('success', 'Page created successfully.');
     }
 
-    public function show(Page $page)
+    public function show($id)
     {
+
+        $page = Page::find($id);
         return view('pages.show', compact('page'));
     }
 
@@ -45,25 +48,27 @@ class PageController extends Controller
         return view('pages.edit', compact('page'));
     }
 
-
-    public function update(Request $request, Page $page)
+    public function update(Request $request, $id)
     {
+
         $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'slug' => 'required|unique:pages,slug,' . $page->id . '|max:255',
-            'content' => 'required',
-            'type' => 'required|in:home,rooms,amenities,activities,contact',
+            'name' => 'required|max:255',
+            'slug' => 'required',
         ]);
+
+        $page = Page::find($id);
 
         $page->update($validatedData);
 
-        return redirect()->route('pages.index')->with('success', 'Page updated successfully.');
+        // Ensure the parameter passed is the page's ID
+        return redirect()->route('site-pages.show', ['site_page' => $id])
+            ->with('success', 'Page updated successfully.');
     }
 
     public function destroy(Page $page)
     {
         $page->delete();
-        return redirect()->route('pages.index')->with('success', 'Page deleted successfully.');
+        return redirect()->route('site-pages.index')->with('success', 'Page deleted successfully.');
     }
 
     public function editHome()

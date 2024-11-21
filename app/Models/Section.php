@@ -9,7 +9,7 @@ class Section extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'order'];
+    protected $fillable = ['name', 'order'];
 
     public function page()
     {
@@ -20,4 +20,10 @@ class Section extends Model
     {
         return $this->hasMany(Content::class);
     }
+
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
 }

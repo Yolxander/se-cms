@@ -37,7 +37,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ is_current_route('pages.*') ? 'active' : '' }}" href="{{ route('pages.index') }}">
+                <a class="nav-link {{ is_current_route('site-pages.*') ? 'active' : '' }}" href="{{ route('site-pages.index') }}">
                     <div
                         class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                         <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
@@ -71,13 +71,13 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ is_current_route('media.*') ? 'active' : '' }}" href="{{ route('media.index') }}">
+                <a class="nav-link {{ is_current_route('images.*') ? 'active' : '' }}" href="{{ route('images.index') }}">
                     <div
                         class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                         <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                            <title>media</title>
-                            <g id="media" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <title>gallery</title>
+                            <g id="gallery" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                 <g id="image" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
                                     <path class="color-background"
                                           d="M21.7142857,0 L2.28571429,0 C1.02321429,0 0,1.02321429 0,2.28571429 L0,21.7142857 C0,22.9767857 1.02321429,24 2.28571429,24 L21.7142857,24 C22.9767857,24 24,22.9767857 24,21.7142857 L24,2.28571429 C24,1.02321429 22.9767857,0 21.7142857,0 Z M7.71428571,13.7142857 L10.2857143,16.2857143 L15.4285714,11.1428571 L21.7142857,17.4285714 L21.7142857,21.7142857 L2.28571429,21.7142857 L2.28571429,17.1428571 L7.71428571,13.7142857 Z"
@@ -86,7 +86,28 @@
                             </g>
                         </svg>
                     </div>
-                    <span class="nav-link-text ms-1">Photo Gallery</span>
+                    <span class="nav-link-text ms-1">All Photos</span>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link {{ is_current_route('galleries.*') ? 'active' : '' }}" href="{{ route('galleries.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                        <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <title>galleries</title>
+                            <g id="gallery" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                <g id="image" transform="translate(12.000000, 12.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                                    <path class="color-background"
+                                          d="M21.7142857,0 L2.28571429,0 C1.02321429,0 0,1.02321429 0,2.28571429 L0,21.7142857 C0,22.9767857 1.02321429,24 2.28571429,24 L21.7142857,24 C22.9767857,24 24,22.9767857 24,21.7142857 L24,2.28571429 C24,1.02321429 22.9767857,0 21.7142857,0 Z M7.71428571,13.7142857 L10.2857143,16.2857143 L15.4285714,11.1428571 L21.7142857,17.4285714 L21.7142857,21.7142857 L2.28571429,21.7142857 L2.28571429,17.1428571 L7.71428571,13.7142857 Z"
+                                          id="Shape"></path>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                    <span class="nav-link-text ms-1">All Galleries</span>
                 </a>
             </li>
 

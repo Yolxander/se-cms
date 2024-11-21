@@ -14,12 +14,12 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('pages.update', $page->id) }}" method="POST">
+                            <form action="{{ route('site-pages.update', $page->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="mb-3">
-                                    <label for="title" class="form-label">Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" value="{{ $page->title }}" required />
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $page->name }}" required />
                                 </div>
                                 <div class="mb-3">
                                     <label for="slug" class="form-label">Slug</label>
@@ -42,7 +42,7 @@
                                                 <td>
                                                     <div class="d-flex px-2">
                                                         <div class="my-auto">
-                                                            <h6 class="mb-0 text-sm">{{ $section->title }}</h6>
+                                                            <h6 class="mb-0 text-sm">{{ $section->name }}</h6>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -50,9 +50,10 @@
                                                     <p class="text-sm font-weight-bold mb-0">{{ $section->order }}</p>
                                                 </td>
                                                 <td>
-                                                    <a href="#" class="btn btn-link text-secondary mb-0">
+                                                    <a href="{{ route('sections.edit', $section->id) }}" class="btn btn-link text-secondary mb-0">
                                                         <i class="fa fa-edit text-xs"></i> Edit
                                                     </a>
+
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -61,7 +62,6 @@
                                 </div>
                                 <div class="d-flex justify-content-between mt-4">
                                     <button type="submit" class="btn btn-primary">Update Page</button>
-                                    <a href="{{ route('sections.create', ['page_id' => $page->id]) }}" class="btn btn-secondary">Add New Section</a>
                                 </div>
                             </form>
                         </div>

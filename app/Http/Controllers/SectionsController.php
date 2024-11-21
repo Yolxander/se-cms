@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
+use App\Models\Image;
 use App\Models\Page;
 use App\Models\Section;
 use App\Models\SectionContent;
@@ -65,7 +67,11 @@ class SectionsController extends Controller
     {
         $section = Section::findOrFail($id);
         $pages = Page::all();
-        return view('sections.edit', compact('section','pages'));
+        $mediaImages = Image::all();
+        $existingGalleries = Gallery::all(); // Fetch all available galleries
+
+
+        return view('sections.edit', compact('section','pages','mediaImages','existingGalleries'));
     }
 
     /**
@@ -74,23 +80,24 @@ class SectionsController extends Controller
     public function update(Request $request, string $id)
     {
         $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'order' => 'required|integer',
-            'content' => 'required'
+            'name' => 'nullable|max:255',
+            'order' => 'nullable|integer',
+            'component_name' => 'nullable|max:255',
+            'page_id' => 'nullable|exists:pages,id',
         ]);
 
         $section = Section::findOrFail($id);
         $section->update([
-            'title' => $validatedData['title'],
-            'order' => $validatedData['order']
-        ]);
-
-        $section->content()->update([
-            'content' => $validatedData['content']
+            'name' => $validatedData['name'],
+            'order' => $validatedData['order'],
+            'component_name' => $validatedData['component_name'],
+            'page_id' => $validatedData['page_id'],
         ]);
 
         return redirect()->route('sections.index')->with('success', 'Section updated successfully.');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -103,4 +110,22 @@ class SectionsController extends Controller
 
         return redirect()->route('sections.index')->with('success', 'Section deleted successfully.');
     }
+
+    public function linkGallery(Request $request, Section $section)
+    {
+        $request->validate([
+            'gallery_id' => 'required|exists:galleries,id',
+        ]);
+
+        $gallery = Gallery::find($request->gallery_id);
+
+        if (!$gallery) {
+            return response()->json(['error' => 'Gallery not found.'], 404);
+        }
+
+        $section->update(['gallery_id' => $gallery->id]);
+
+        return response()->json(['success' => true, 'message' => 'Gallery linked successfully.']);
+    }
+
 }

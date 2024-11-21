@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\SettingController;
+use App\Http\Livewire\GalleryShow;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -94,19 +97,50 @@ Route::get('/laravel-examples/user-profile', [ProfileController::class, 'index']
 Route::put('/laravel-examples/user-profile/update', [ProfileController::class, 'update'])->name('users.update')->middleware('auth');
 Route::get('/laravel-examples/users-management', [UserController::class, 'index'])->name('users-management')->middleware('auth');
 
-Route::resource('pages', PageController::class);
+// Move specific page routes above resource declaration
+//Route::get('/pages/home', [PageController::class, 'editHome'])->name('pages.home');
+//Route::get('/pages/rooms', [PageController::class, 'editRooms'])->name('pages.rooms');
+//Route::get('/pages/amenities', [PageController::class, 'editAmenities'])->name('pages.amenities');
+//Route::get('/pages/activities', [PageController::class, 'editActivities'])->name('pages.activities');
+//Route::get('/pages/contact', [PageController::class, 'editContact'])->name('pages.contact');
+
+
+// Resource routes
+Route::resource('site-pages', PageController::class)->names([
+    'index' => 'site-pages.index',
+    'create' => 'site-pages.create',
+    'store' => 'site-pages.store',
+    'show' => 'site-pages.show',
+    'edit' => 'site-pages.edit',
+    'update' => 'site-pages.update',
+    'destroy' => 'site-pages.destroy',
+]);
+
+//gallery controller
+Route::get('/galleries', [GalleryController::class, 'index'])->name('galleries.index');
+Route::post('/galleries/store', [GalleryController::class, 'store'])->name('galleries.store');
+Route::get('/galleries/{gallery}', [GalleryController::class, 'show'])->name('galleries.show');
+Route::get('/galleries/{gallery}/edit', [GalleryController::class, 'edit'])->name('galleries.edit');
+
 Route::resource('sections', SectionsController::class);
+Route::post('/sections/{section}/link-gallery', [SectionsController::class, 'linkGallery']);
+
+
 Route::resource('media', MediaController::class);
 Route::resource('bookings', BookingController::class);
 Route::resource('reviews', ReviewController::class);
 Route::resource('settings', SettingController::class);
 
-// Specific page routes
-Route::get('/pages/home', [PageController::class, 'editHome'])->name('pages.home');
-Route::get('/pages/rooms', [PageController::class, 'editRooms'])->name('pages.rooms');
-Route::get('/pages/amenities', [PageController::class, 'editAmenities'])->name('pages.amenities');
-Route::get('/pages/activities', [PageController::class, 'editActivities'])->name('pages.activities');
-Route::get('/pages/contact', [PageController::class, 'editContact'])->name('pages.contact');
+// Define resource routes for ImageController
+Route::resource('images', ImageController::class);
+
+// Additional routes for specific actions
+Route::patch('images/{image}/replace', [ImageController::class, 'replace'])->name('images.replace');
+Route::patch('images/{image}/change-section', [ImageController::class, 'changeSection'])->name('images.change-section');
+Route::post('images/{image}/add-to-gallery', [ImageController::class, 'addToGallery'])->name('images.add-to-gallery');
+Route::post('images/upload', [ImageController::class, 'uploadCsv'])->name('images.upload');
+Route::patch('/images/{image}/replace', [ImageController::class, 'replace']);
+Route::patch('/images/{image}/move', [ImageController::class, 'addToGallery']);
 
 Route::get('/docs', function () {
     return view('docs');
