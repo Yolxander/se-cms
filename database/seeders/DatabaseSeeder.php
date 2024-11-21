@@ -19,13 +19,15 @@ class DatabaseSeeder extends Seeder
 //        ]);
 
         $this->call([
-            FeatureCardsSeeder::class,
+//            FeatureCardsSeeder::class,
             GallerySeeder::class,
-            HotelHomeSectionSeeder::class,
-            LifeInUvitaSeeder::class,
-            Suite1Seeder::class,
-            SuitesGallerySeeder::class,
+//            HotelHomeSectionSeeder::class,
+//            LifeInUvitaSeeder::class,
             SuitesPageSeeder::class,
+            Suite1Seeder::class,
+            Suite2Seeder::class,
+            Suite3Seeder::class,
+            SuitesGallerySeeder::class,
         ]);
 
     }
